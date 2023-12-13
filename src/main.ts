@@ -21,7 +21,6 @@ export async function main() {
   await setUp();
   await testOne();
   // await testTwo(); // Completa la primera para hacer la segunda
-  // await testThree(); // Completa la primera para hacer la segunda
 }
 
 /**
@@ -64,5 +63,10 @@ async function testOne() {
  */
 async function testTwo() {
   await page.goto(DOLAR_PAGE_CRONISTA);
+
+  // Continua
+  // Es recomendado usar la funcion `findDivByText` en './utils'
+
   // await page.goto(DOLAR_OFICIAL_PAGE_GOOGLE); // Entrar una vez tengas los datos de cronista
 }
+

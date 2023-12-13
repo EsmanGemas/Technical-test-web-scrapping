@@ -1,6 +1,5 @@
 import { page } from "./store";
-import generalSel from "./general.sel";
-import {ElementHandle} from "puppeteer";
+import { ElementHandle } from "puppeteer";
 
 export async function clearInput(inputSelector: string): Promise<void> {
   await page.focus(inputSelector);
@@ -19,32 +18,31 @@ export async function findText(text: string, index: number): Promise<string> {
 
 export async function findButtonByText(text: string) {
   const selector = `//button[contains(text(), \'${text}\')]`;
-  return await page.waitForXPath(selector, {
+  return (await page.waitForXPath(selector, {
     visible: true,
-  }) as ElementHandle<Element>
+  })) as ElementHandle<Element>;
 }
 
 export async function findDivByText(text: string) {
   const selector = `//div[contains(text(), \'${text}\')]`;
-  return await page.waitForXPath(selector, {
+  return (await page.waitForXPath(selector, {
     visible: true,
-  }) as ElementHandle<Element>
+  })) as ElementHandle<Element>;
 }
 
 export async function findElementByText(text: string, element: string) {
   const selector = `//${element}[contains(text(), \'${text}\')]`;
-  return await page.waitForXPath(selector, {
+  return (await page.waitForXPath(selector, {
     visible: true,
-  }) as ElementHandle<Element>
+  })) as ElementHandle<Element>;
 }
 
-export async function isElementDisabled(element: ElementHandle): Promise<boolean> {
-  return element.evaluate((el: Element) => el.hasAttribute('disabled'));
+export async function isElementDisabled(
+  element: ElementHandle,
+): Promise<boolean> {
+  return element.evaluate((el: Element) => el.hasAttribute("disabled"));
 }
 
 export async function sleep(time: number) {
-  return setTimeout(() => {}, time)
+  return setTimeout(() => {}, time);
 }
-
-export const clickNextButton = async () => (await findButtonByText(generalSel.nextButton)).click();
-export const submitButton = async () => (await findButtonByText(generalSel.submitButton)).click();
